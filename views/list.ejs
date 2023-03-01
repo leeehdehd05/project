@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="main2.css" />
+  <link rel="stylesheet" href="css.css" />
+  <link rel="shortcut icon" href="/icon.png" type="image/x-icon" />
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+  <header>
+    <div class="scroll">
+      <h1>
+        <a href="/main"><img src="logo.png" width="300px" /></a>
+      </h1>
+
+      <div class="container">
+        <nav id="topMenu">
+          <ul>
+            <li class="topMenuLi">
+              <a class="menuLink">조사＆통계</a>
+              <ul class="submenu">
+                <li><a class="submenuLink" href="/voting">찬/반 조사</a></li>
+              </ul>
+            </li>
+            <li class="topMenuLi">
+              <a class="menuLink">질문 답변</a>
+              <ul class="submenu">
+                <li><a class="submenuLink" href="/list">질문 게시판</a></li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="board_wrap">
+        <div class="board_title">
+          <strong>질문게시판</strong>
+        </div>
+        <div class="board_list_wrap">
+          <div class="board_list">
+            <div class="top">
+              <div class="num">번호</div>
+              <div class="title">제목</div>
+              <div class="writer">글쓴이</div>
+            </div>
+            <% for (var i=0; i < posts.length; i++){ %>
+              <div>
+                <div class="num">
+                  <%= posts[i]._id %>
+                </div>
+                <div class="title">
+                  <a href="/view/<%= posts[i]._id %>">
+                    <%= posts[i].제목 %>
+                  </a>
+                </div>
+                <div class="writer">
+                  <%= posts[i].작성자 %>
+                </div>
+                <% if(posts[i].아이디.toString()==user._id.toString()) { %>
+                  <button class="delete" data-id="<%= posts[i]._id %>">삭제</button>
+                  <% } %>
+              </div>
+              <% } %>
+          </div>
+          <div class="bt_wrap1">
+            <a href="/write" class="on">등록</a>
+            <!--<a href="#">수정</a>-->
+          </div>
+          <div class="board_page">
+            <a href="#" class="bt first">
+              <<< /a>
+                <a href="#" class="bt prev">
+                  << /a>
+                    <a href="#" class="num on">1</a>
+                    <a href="#" class="num">2</a>
+                    <a href="#" class="num">3</a>
+                    <a href="#" class="num">4</a>
+                    <a href="#" class="num">5</a>
+                    <a href="#" class="bt next">></a>
+                    <a href="#" class="bt last">>></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <main>
+    <div class="container"></div>
+  </main>
+
+  <script>
+    $(window).on("load", function () {
+      $("header,main").addClass("active");
+    });
+  </script>
+
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script>
+    $(".delete").click(function (e) {
+      var 글번호 = e.target.dataset.id;
+      var 지금누른거 = $(this);
+      $.ajax({
+        method: "DELETE",
+        url: "/delete",
+        data: { _id: 글번호 },
+      })
+        .done(function () {
+          지금누른거.parent("div").fadeOut();
+          location.reload();
+          console.log("성공");
+        })
+        .fall(function (xhr, textStatus, errorThrown) {
+          console.log(xhr, textStatus, errorThrown);
+        });
+    });
+  </script>
+
+  <script>
+    $(".chat").click(function (e) {
+      var _id = e.target.dataset.id;
+      $.post("/chatroom", { 당한사람id: _id }).then(() => {
+        console.log("채팅방 게시물 생성완료");
+      });
+    });
+  </script>
+</body>
+
+</html>

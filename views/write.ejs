@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시판 글쓰기</title>
+    <link rel="stylesheet" href="css.css">
+    <link rel="stylesheet" href="main2.css">
+    <link rel="shortcut icon" href="/icon.png" type="image/x-icon">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <header>
+        <div class="scroll">
+        <h1><a href='/main'><img src="/logo.png" width="300px"></a></h1>
+
+        <div class="container">
+            <nav id="topMenu">
+                <ul>
+                    <li class="topMenuLi">
+                        <a class="menuLink">조사＆통계</a>
+                        <ul class="submenu">
+                            <li><a class="submenuLink" href="/voting">찬/반 조사</a></li>
+                        </ul>
+                    </li>
+                    <li class="topMenuLi">
+                        <a class="menuLink">질문 답변</a>
+                        <ul class="submenu">
+                            <li><a class="submenuLink" href="/list">질문 게시판</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="board_wrap">
+            <div class="board_title">
+                <strong>질문 게시판 글쓰기</strong>
+            </div>
+            <form action="/add" method="post">
+                <div class="board_write_wrap">
+                    <div class="board_write">
+                        <div class="title">
+                            <dl>
+                                <dt>제목</dt>
+                                <dd><input type="text" id="title" name="title" maxlength="100" placeholder="제목 입력"
+                                        pattern=".{4,100}"></dd>
+                            </dl>
+                        </div>
+                        <div class="info">
+                            <dl>
+                                <dt>작성자</dt>
+                                <dd><input type="text" id="writer" name="writer" placeholder="작성자 입력"></dd>
+                            </dl>
+                        </div>
+                        <div class="content">
+                            <textarea id="content" name="content" placeholder="내용 입력"></textarea>
+                        </div>
+
+                        <form method="POST" action="/upload" enctype="multipart/form-data" >
+                            <input type="file" name="사진">
+                            <button type="submit">전송</button>
+                        </form>
+
+                    </div>
+                    <div class="bt_wrap">
+                        <button type="submit">등록</button>
+            </form>
+        </div>
+        </div>
+     </div>
+
+    </header>
+
+    <main>
+        <div class="container">
+        </div>
+    </main>
+
+    <script>
+        $(window).on("load", function () {
+            $("header,main").addClass("active");
+        });
+    </script>
+</body>
+
+</html>

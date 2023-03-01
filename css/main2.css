@@ -1,0 +1,533 @@
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap');
+
+*{margin: 0; padding: 0;box-sizing: border-box;}
+
+body{height: 100vh; overflow:hidden; 
+    font-family: 'Noto Sans KR', sans-serif;
+
+}
+.scroll{
+    overflow:auto; 
+    width:1870px; 
+    height:1000px;
+}
+a{
+    text-decoration: none;
+    color: #fff;
+}
+body::before{
+    content: "";
+    position: absolute; z-index: 1;
+    top:0; right: 0; bottom: 0; left: 0;
+    background-color :rgba(0,0,0,.7);
+    
+}
+
+.container {
+    max-width:1500px; margin: 0 auto 0;
+    position: relative;
+    
+    }
+
+header{
+        position: fixed; z-index: 99;
+        top: 0; left: 0; right: 0;
+        padding: 50px;
+        transform: translateY(-180px);
+        transition: transform 1s ease;
+    
+    }
+    header.active{
+        transform: translateY(0);
+    }
+    
+    header h1{
+        color: #fff;
+        text-align: center;
+        margin: 50px auto 50px;
+    }
+    
+    header nav{
+        position: absolute; z-index: 2;
+        top:0; right: 0;
+        overflow:hidden;
+    }
+    
+    nav a{
+        font-size: 24px; color: #fff;
+        display: inline-block; vertical-align: middle;
+         margin: 0 10px;
+        text-decoration: none;
+        position: relative;
+        padding: 6px 12px;
+        
+    }
+    
+    nav a::after{
+        content: "";
+        position: absolute;
+        bottom:0;
+        left: 0%;
+        transform: translateY(-50%);
+        width: 0;
+        height: 4px;
+        background-color: #f1c40f;
+        transition: all .5s ease-out;
+    }
+    
+    nav a:hover::after{
+        width: 100%;
+    }
+
+    main,
+    main::before{height: 100vh;}
+    main::before{
+        content: "";
+        display: block;
+        height: 100vh;
+        background : url("bg.jpg") no-repeat center;
+        background-size: cover;
+        transform: scale(1.2);
+        transition: all 1s linear;
+        background-color :rgba(0,0,0,.2);
+    }
+
+    
+main p{
+    
+    font-size: 72px; color: #fff;
+    transition: all 1s ease;
+    opacity: 0;
+    
+}
+
+main::after{
+    content: "";
+    position: absolute; z-index: 3;
+    top: 0; right: 0; bottom: 0; left: 0;
+    background: #000;
+    opacity: 1;
+    transition: all 1s linear;
+    
+}
+
+main.active::after{opacity: 0;}
+
+main.container{
+
+    top: 50%; left: 0; right: 0;
+    transform: translateY(-50%);
+    padding: 50px;
+
+}
+
+
+main p:nth-child(1) {transform:  translateY(50px);}
+main p:nth-child(2) {transform:  translateY(75px);}
+main p:nth-child(3) {transform:  translateY(100px);}
+
+main.active p {opacity: 1; transform:  translateY(0);}
+
+
+.search{
+    height: 50px;
+    width: 600px;
+    border: 1px solid gray;
+    background-color: #ffffff;
+    text-align: center;
+    margin: -30px auto 50px;
+    border-radius: 3px;
+}
+
+.search input{
+    font-size: 18px;
+    width: 405px;
+    padding: 14px;
+    border: 0px;
+    outline: none;
+    float: left;
+}
+
+.search button{
+    width: 80px;
+    height: 100%;
+    border: 0px;
+    border-radius:3px ;
+    background: gray;
+    outline: none;
+    margin-left: 113px;
+    color: #ffffff;
+    font-size: 18px;
+}
+
+
+#topMenu {
+    height:250px; width: 500px;
+    margin: 0 auto 0;
+    margin-right: 500px;
+} 
+#topMenu ul {
+    list-style-type: none;
+    margin: 0 auto 0; padding: 0px;
+
+} 
+#topMenu ul li {
+    color: white;      
+    float: left; 
+     vertical-align: middle; 
+    text-align: center; 
+    position: relative;
+} 
+.menuLink, .submenuLink {  
+    text-decoration:none;
+    display: block;
+    width: 250px;
+     margin: 0 auto 0;  
+     font-size: 36px;
+    font-weight: bold;
+    font-family: "Trebuchet MS", Dotum;
+    color: white;
+    
+} 
+.menuLink {
+     color: white; 
+     
+} 
+
+
+.longLink {  
+    width: 500px;
+} 
+.submenu { 
+    position: absolute;  
+    height: 0px; 
+    overflow: hidden; 
+    transition: height .2s; 
+    -webkit-transition: height .2s;
+    -moz-transition: height .2s;
+    -o-transition: height .2s;
+
+} 
+.topMenuLi:hover .submenu {
+     height: 500px; 
+}
+.submenuLink:hover {
+    color: black;
+    background-color: #dddddd;  }
+
+.send{
+    margin: 50px auto 50px;
+    text-align: center;
+}
+
+.btn1 {
+    margin-left: 1400px;
+    text-align: center;
+    display: block;
+    width: 5%;
+    position: absolute;
+    font-size: 15px;
+    padding: 15px;
+    background: none;
+    color: #fff;
+    border-radius: 5px;
+    transition:all .4s ease-out;
+    border-color: white ;
+    cursor: pointer;
+}
+.btn1::after {
+    position: absolute;
+    top:0;
+    left: 0;
+    top:0;
+    left:0;
+    width: 0;
+    height: 100%;
+    background: #e67e22;
+}
+
+.btn1:hover{
+    background-color:#e67e22; ;
+}
+
+.btn2 {
+    text-align: center;
+    display: block;
+    width: 10%;
+    font-size: 15px;
+    margin: -53.9px;
+    margin-left: 120px;
+    padding: 10px;
+    background: none;
+    color: #fff;
+    border-radius: 5px;
+    transition:all .4s ease-out;
+    border-color: white ;
+    cursor: pointer;
+}
+.btn2::after {
+    top:0;
+    left: 0;
+    top:0;
+    left:0;
+    width: 0;
+    height: 100%;
+    background: rgb(221, 173, 0);
+}
+
+.btn2:hover{
+    background-color:rgb(221, 173, 0);
+}
+
+.btn3 {
+    display: block;
+    width: 10%;
+    font-size: 15px;
+    margin: 10px;
+    padding: 10px;
+    background: none;
+    color: #fff;
+    border-radius: 5px;
+    transition:all .4s ease-out;
+    border-color: white ;
+    cursor: pointer;
+}
+.btn3::after {
+    position: absolute;
+    top:0;
+    left: 0;
+    top:0;
+    left:0;
+    width: 0;
+    height: 100%;
+    background: #e67e22;
+}
+
+.btn3:hover{
+    background-color:#e67e22; ;
+}
+
+.list-group{
+    background-color :rgba(0,0,0,.3);
+    margin: 10px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.list-group p{
+    color: #fff;
+    font-size: 15px;
+}
+
+.comment textarea{
+    margin: 5px auto 5px;
+display: block;
+width: 100%;
+height: 45px;
+padding: 15px;
+box-sizing: border-box;
+border: 0;
+resize: vertical;
+text-align: left;
+border-radius: 5px;
+}
+
+.chat-content {
+
+    height: 450px;
+    overflow-y: scroll;
+    padding: 10px;
+  }
+  .chat-content li {
+    margin-top: 10px;
+    list-style: none;
+  }
+  .text-small {
+    font-size: 12px;
+    color: gray;
+    margin-bottom: 0;
+  }
+  .chat-box {
+    background: #eee;
+    padding: 5px;
+    border-radius: 5px;
+    float: left;
+  }
+  .mine {
+    float: right;
+  } 
+
+  .row{
+    margin: 250px auto 50px;
+}
+
+
+
+  .wrapper{
+      height: 100%;
+      width: 1000px;
+      margin: 350px auto 250px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      
+  }
+
+  .user-container{
+      display: flex;
+    background-color: #a9bdce;
+    flex:1;
+    justify-content: flex-start;
+    align-items: center ;
+    padding: 0.5rem;
+  }
+
+  .user-container label{
+      font-size:14px;
+      margin-right: 1rem;
+  }
+
+  .user-container input{
+      border-radius: 3px;
+      border: none;
+      height: 100%;
+  }
+  .display-container{
+      flex:12;
+      background-color: #b2c7d9;
+      overflow-y:scroll;
+  }
+
+  .input-container{
+      display: flex;
+      background-color: white;
+      justify-content: stretch;
+      flex:10;
+  }
+
+  .input-container span{
+    display:flex;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 0.3rem;
+  }
+
+  .chatting-input{
+      font-size: 12px;
+      height: 100%;
+      flex:8;
+      border: none;
+  }
+
+  .send-button{
+      flex:1;
+      background: #ffeb33;
+      border: none;
+      height: 100%;
+      border-radius: 3px;
+  }
+
+  .chatting-list li{
+      width: 90%;
+      padding: 0.3rem;
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-end;
+      margin-top: 0.5rem;
+  }
+
+  .profile{
+    display:flex;
+    flex-direction:column;
+    align-items: center;
+    justify-content: center;
+    flex:1;
+}
+
+  .profile.user{
+    font-size: 10px;
+    margin-bottom: 0.3rem;
+}
+
+.profile .img{
+    border-radius: 50%;
+    object-fit: cover;
+    width: 50px;
+    height: 50px;
+}
+
+  .massege{
+      border-radius: 5px;
+      padding: 0.5rem;
+      margin: 0 5px;
+     flex: 7;
+  }
+
+  .time{
+    font-size: 10px;
+    margin: 0 5px;
+}
+
+.sent.massege{
+    background-color:darkblue ;
+}
+
+#countBtn {
+
+    text-align: center;
+    display: block;
+    width: 5%;
+    position: absolute;
+    font-size: 15px;
+    padding: 15px;
+    background: none;
+    color: #fff;
+    border-radius: 5px;
+    transition:all .4s ease-out;
+    border-color: white ;
+    cursor: pointer;
+}
+#countBtn ::after {
+    position: absolute;
+    top:0;
+    left: 0;
+    top:0;
+    left:0;
+    width: 0;
+    height: 100%;
+    background: rgb(38, 38, 227);
+}
+
+#countBtn:hover{
+    background-color:rgb(38, 38, 227);
+}
+
+#countBtn2 {
+    margin-left: 150px;
+    text-align: center;
+    display: block;
+    width: 5%;
+    position: absolute;
+    font-size: 15px;
+    padding: 15px;
+    background: none;
+    color: #fff;
+    border-radius: 5px;
+    transition:all .4s ease-out;
+    border-color: white ;
+    cursor: pointer;
+}
+#countBtn2 ::after {
+    position: absolute;
+    top:0;
+    left: 0;
+    top:0;
+    left:0;
+    width: 0;
+    height: 100%;
+    background: red;
+}
+
+#countBtn2:hover{
+    background-color:red;
+}

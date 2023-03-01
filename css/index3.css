@@ -1,0 +1,147 @@
+body {
+    
+}
+#topMenu {
+    height: 50px; width: 2400px;
+} 
+#topMenu ul {
+    list-style-type: none;
+    margin: 0px; padding: 0px;
+
+} 
+#topMenu ul li {
+    color: white;
+    background-color: #42a5ff;
+    float: left; 
+    line-height: 50px;  
+    vertical-align: middle;  
+    text-align: center; 
+    position: relative;
+} 
+.menuLink, .submenuLink {  
+    text-decoration:none;
+    display: block;
+    width: 545px;
+     margin: 0 auto 0;  
+     font-size: 20px;
+    font-weight: bold;
+    font-family: "Trebuchet MS", Dotum;
+} 
+.menuLink {
+     color: white; 
+} 
+.topMenuLi:hover .menuLink { 
+    color: red;
+    background-color: #42a5ff;
+} 
+.submenuLink {
+    color: #42a5ff;
+    background-color: white;
+    border: solid 1px #42a5ff;
+    margin-top: -1px;
+} 
+.longLink {  
+    width: 390px;
+} 
+.submenu { 
+    position: absolute;  
+    height: 0px; 
+    overflow: hidden; 
+    transition: height .2s; 
+    -webkit-transition: height .2s;
+    -moz-transition: height .2s;
+    -o-transition: height .2s;
+} 
+.topMenuLi:hover .submenu {
+     height: 500px; 
+}
+.submenuLink:hover {
+    color: white;
+    background-color: #dddddd;  }
+
+.search{
+    height: 40px;
+    width: 400px;
+    border: 1px solid #42a5ff;
+    background-color: #ffffff;
+    text-align: center;
+    margin: 0px auto 50px;
+    border-radius: 3px;
+}
+
+.search input{
+    font-size: 16px;
+    width: 325px;
+    padding: 10px;
+    border: 0px;
+    outline: none;
+    float: left;
+}
+
+.search button{
+    width: 40px;
+    height: 70%;
+    border: 0px;
+    border-radius:3px ;
+    background: #42a5ff;
+    outline: none;
+    margin: 6px auto 10px;
+    color: #ffffff;
+}
+
+.login_nav {
+    margin-top: 0;
+    text-align: right;
+    font-size: 0;
+}
+
+.login_nav button {
+    display: inline-block;
+    min-width: 80px;
+    margin-left: 10px;
+    padding: 10px;
+    border:  1px solid #FFD424;
+    border-radius: 2px;
+    font-size: 1.4rem;
+    background-color: #FFD424;
+    color:black;
+}
+
+.login_nav button:first-child {
+    margin-left: 0;
+}
+
+
+.search1{
+    height: 40px;
+    width: 800px;
+    border: 1px solid #42a5ff;
+    background-color: #ffffff;
+    text-align: center;
+    margin: 50px auto 50px;
+    border-radius: 3px;
+}
+
+.search1 input{
+    font-size: 16px;
+    width: 695px;
+    padding: 10px;
+    border: 0px;
+    outline: none;
+    float: left;
+}
+
+.search1 button{
+    width: 70px;
+    height: 70%;
+    border: 0px;
+    border-radius:3px ;
+    background: #42a5ff;
+    outline: none;
+    margin: 6px auto 10px;
+    color: #ffffff;
+}
+
+.logo{
+    text-align: center;
+}

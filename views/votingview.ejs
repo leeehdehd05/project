@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>질문 게시판</title>
+    <link rel="stylesheet" href="/css.css">
+    <link rel="stylesheet" href="/main2.css">
+    <link rel="shortcut icon" href="/icon.png" type="image/x-icon">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.1/socket.io.min.js"
+        integrity="sha512-gVG6WRMUYFaIdoocaxbqd02p3DUbhReTBWc7NTGB96i7vONrr7GuCZJHFFmkXEhpwilIWUnfRIMSlKaApwd/jg=="
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"
+        integrity="sha512-d9xgZrVZpmmQlfonhQUvTR7lMPtO7NkZMkA0ABN3PHCbKA5nqylQ/yWlFAyY6hYgdF1Qh6nYiuADWwKB4C2WSw=="
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header>
+        <div class="scroll">
+            <h1><a href='/main'><img src="/logo.png" width="300px"></a></h1>
+
+            <div class="container">
+                <nav id="topMenu">
+                    <ul>
+                        <li class="topMenuLi">
+                            <a class="menuLink">조사＆통계</a>
+                            <ul class="submenu">
+                                <li><a class="submenuLink" href="/voting">찬/반 조사</a></li>
+                            </ul>
+                        </li>
+                        <li class="topMenuLi">
+                            <a class="menuLink">질문 답변</a>
+                            <ul class="submenu">
+                                <li><a class="submenuLink" href="/list">질문 게시판</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+            <div class="board_view_wrap">
+                <div class="board_view">
+                    <div class="title">
+                        <%= data.제목 %>
+                    </div>
+                    <div class="info">
+                        <dl>
+                            <dt>번호</dt>
+                            <dd>
+                                <%= data._id%>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>작성자</dt>
+                            <dd>
+                                <%= data.작성자 %>
+                            </dd>
+                        </dl>
+                    </div>
+                    <div class="content1">
+                        <canvas id="chart" width="400" height="150"></canvas>
+                        <button id="btn1" name="vote1" type="button" class="vote1">찬성</button>
+                        <button id="btn2" name="vote2" type="button" class="vote2">반대</button>
+                    </div>
+
+                    <ul class="list-group" value="<%= data._id %>">
+                        <% for (let i=0; i < commentdata.length; i++){ %>
+                            <li class="'list-group-item">
+                                <p>
+                                    <%= commentdata[i].댓글작성자 %> : <%= commentdata[i].댓글 %>
+                                </p>
+                            </li>
+                            <% } %>
+                    </ul>
+
+
+                    <form action="/votingcomment" method="post">
+                        <div class=comment>
+                            <input type="text" name="parentnumber" value="<%= data._id %>" style="display: none;">
+                            <input type="text" id="commentwriter" name="commentwriter" placeholder="작성자" required="">
+                            <textarea id="comment" name="comment" placeholder="내용 입력" required=""></textarea>
+                            <button class="btn3" data-id="<%= data._id %>">댓글 달기</button>
+                            <button class="btn2 reload">새로고침</button>
+                        </div>
+                    </form>
+
+
+
+                    <script>
+                        var ctx = document.getElementById('chart').getContext('2d');
+                        var myChart = new Chart(ctx, {
+                            type: 'bar',
+                            data: {
+                                labels: ['찬성', '반대'],
+                                datasets: [{
+                                    label: '찬성/반대',
+                                    data: [<%= posts[0].vote1 %> , <%= posts[0].vote2 %>],
+                                    backgroundColor: [
+                                        'rgba(54, 162, 235, 0.2)',
+                                        'rgba(255, 99, 132, 0.2)'
+                                    ],
+                                    borderColor: [
+                                        'rgba(54, 162, 235, 0.2)',
+                                        'rgba(255, 99, 132, 0.2)'
+
+                                    ],
+                                    borderWidth: 1
+                                }]
+                            },
+                            options: {
+                                scales: {
+                                    yAxes: [{
+                                        ticks: {
+                                            beginAtZero: true
+                                        }
+                                    }]
+                                }
+                            }
+                        });
+
+                        function addData(chart, label, data) {
+
+                        }
+
+                        document.getElementById('btn1').addEventListener('click', () => {
+
+                            myChart.data.datasets.forEach((dataset) => {
+                                dataset.data[0] = dataset.data[0] + 1
+                                document.getElementById('btn1').textContent = dataset.data[0];
+                            });
+                            myChart.update();
+                        })
+
+                        document.getElementById('btn2').addEventListener('click', () => {
+                            myChart.data.datasets.forEach((dataset) => {
+                                dataset.data[1] = dataset.data[1] + 1
+                                document.getElementById('btn2').textContent = dataset.data[1];
+                            });
+                            myChart.update();
+                        })
+
+
+                    </script>
+
+                    <div class="bt_wrap1">
+                        <a href="/voting" class="on">목록</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+        </div>
+    </main>
+
+
+    <script>
+        $(window).on("load", function () {
+            $("header,main").addClass("active");
+        });
+
+    </script>
+
+    <script>
+        $('.reload').click(function () {
+            location.reload()
+        })
+    </script>
+</body>
+
+</html>

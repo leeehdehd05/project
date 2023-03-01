@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>질문 게시판</title>
+    <link rel="stylesheet" href="/css.css">
+    <link rel="stylesheet" href="/main2.css">
+    <link rel="shortcut icon" href="/icon.png" type="image/x-icon">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+    <header>
+        <div class="scroll">
+            <h1><a href='/main'><img src="/logo.png" width="300px"></a></h1>
+
+            <div class="container">
+                <nav id="topMenu">
+                    <ul>
+                        <li class="topMenuLi">
+                            <a class="menuLink">조사＆통계</a>
+                            <ul class="submenu">
+                                <li><a class="submenuLink" href="/voting">찬/반 조사</a></li>
+                            </ul>
+                        </li>
+                        <li class="topMenuLi">
+                            <a class="menuLink">질문 답변</a>
+                            <ul class="submenu">
+                                <li><a class="submenuLink" href="/list">질문 게시판</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+            <div class="board_view_wrap">
+                <div class="board_view">
+                    <div class="title">
+                        <%= data.제목 %>
+                    </div>
+                    <div class="info">
+                        <dl>
+                            <dt>번호</dt>
+                            <dd>
+                                <%= data._id%>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>작성자</dt>
+                            <dd>
+                                <%= data.작성자 %>
+                            </dd>
+                        </dl>
+                    </div>
+                    <div class="content">
+                        <%= data.내용 %>
+                    </div>
+
+                    <ul class="list-group" value="<%= data._id %>">
+                        <% for (let i=0; i < commentdata.length; i++){ %>
+                            <li class="'list-group-item">
+                                <p>
+                                    <%= commentdata[i].댓글작성자 %> : <%= commentdata[i].댓글 %>
+                                </p>
+                            </li>
+                            <% } %>
+                    </ul>
+
+
+                    <form action="/comment" method="post">
+                        <div class=comment>
+                            <input type="text" name="parentnumber" value="<%= data._id %>" style="display: none;">
+                            <input type="text" id="commentwriter" name="commentwriter" placeholder="작성자" required="">
+                            <textarea id="comment" name="comment" placeholder="내용 입력" required=""></textarea>
+                            <button class="btn3" data-id="<%= data._id %>">댓글 달기</button>
+                        </div>
+                    </form>
+                    <button class="btn2 reload">새로고침</button>
+                    <div class="bt_wrap1">
+                        <a href="/list" class="on">목록</a>
+                        <a href="/edit/<%= data._id%>">수정</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </header>
+    <main>
+        <div class="container">
+
+        </div>
+    </main>
+
+    <script>
+        $(window).on("load", function () {
+            $("header,main").addClass("active");
+        });
+    </script>
+
+    <script>
+        $('.reload').click(function () {
+            location.reload()
+        })
+    </script>
+
+</body>
+
+</html>

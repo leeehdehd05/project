@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main2.css">
+    <link rel="shortcut icon" href="/icon.png" type="image/x-icon">
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+    <header>
+        <div class="scroll">
+            <h1><a href='/main'><img src="logo.png" width="300px" height="80px"></a></h1>
+            <div class=search>
+                <input type="text" placeholder="검색어 입력" id="search-input">
+                <button id=search>검색</button>
+            </div>
+            <div class="login_nav">
+                <form action="/logout" method="get">
+                    <button type="submit" class="btn btn1">로그아웃</button>
+                </form>
+            </div>
+            <div class="container">
+                <nav id="topMenu">
+                    <ul>
+                        <li class="topMenuLi">
+                            <a class="menuLink">조사＆통계</a>
+                            <ul class="submenu">
+                                <li><a class="submenuLink" href="/voting">찬/반 조사</a></li>
+                            </ul>
+                        </li>
+                        <li class="topMenuLi">
+                            <a class="menuLink">질문 답변</a>
+                            <ul class="submenu">
+                                <li><a class="submenuLink" href="/list">질문 게시판</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+        </div>
+    </main>
+
+    <script>
+        $('#search').click(function () {
+            var 입력한값 = $('#search-input').val()
+            window.location.replace('/search?value=' + 입력한값)
+        })
+    </script>
+
+    <script>
+        $(window).on("load", function () {
+            $("header,main").addClass("active");
+        });
+    </script>
+
+</body>
+
+</html>
